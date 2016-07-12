@@ -1,0 +1,14 @@
+<table>
+  <tr>
+　　<td><%= render partial: 'table', locals: {product: @product, order: @order, quantity: @quantity, bikou: @bikou} %></td>
+    <td width="50" ></td>
+　　<td><%= render partial: 'table', locals: {product: @product2, order: @order2, quantity: @quantity2, bikou: @bikou2} %></td>
+  </tr>
+</table>
+<br>
+<form class="noPrint">
+   <input type="button" value="このページを印刷" onclick="window.print();" />
+   <input type="button" onClick='history.back();' value="戻る">
+</form>
+<br>
+<br>

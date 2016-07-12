@@ -1,0 +1,12 @@
+<% @title = 'メニュー' %>
+<h1>メインメニュー</h1>
+
+<ul class="menu">
+  <li><%= link_to '生産投入表作成', :admin_maketag %>
+  <br><br>
+  <li>設定
+    <ul>
+      <li><%= link_to '機種管理(QRコード登録、オプション設定)', :admin_product_items %>
+      <li><%= link_to '客先管理', :admin_customers %>
+    </ul>
+</ul>

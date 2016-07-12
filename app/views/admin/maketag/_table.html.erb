@@ -1,0 +1,60 @@
+<% order_repeat = 5 %>
+<table class="table-css" border="0" cellspacing="0" cellpadding="0" width="490">
+  <tr height="95">
+    <td width="80"></td>
+    <td id="title" colspan="2">生産投入表</td>
+    <td width="80"><div align="center"><%= product.use_qr? ? (qrcode_tag product.qrcode + "\n", level: 'm', module_size: 2) : '' %></div></td>
+  </tr>
+  <tr><td id="space" colspan="4"></td></tr>
+  <tr>
+    <td class="td-b-none" id="notes" colspan="4">機種名</td>
+  </tr>
+  <tr>
+    <td class="td-t-none" id="kisyu" colspan="4" height="70"><%= product.name %></td>
+  </tr>
+  <tr><td id="space" colspan="4"></td></tr>
+  <tr height="25">
+    <td class="td-all" id="header" colspan="2">オーダー</td>
+    <td class="td-all" id="header" colspan="2">台数</td>
+  </tr>
+  <% order_repeat.times do |i| %>
+  <tr height="25">
+    <% if i != (order_repeat - 1) %>
+      <td class="td-t-dot" id="order" colspan="2"><%= order[i] ? order[i] : "" %></td>
+      <td class="td-t-dot" id="quantity" colspan="2"><%= quantity[i] ? number_with_delimiter(quantity[i], delimiter: ",") : "" %></td>
+    <% else %>
+      <td class="td-t-none" id="order" colspan="2"><%= order[i] ? order[i] : "" %></td>
+      <td class="td-t-none" id="quantity" colspan="2"><%= quantity[i] ? number_with_delimiter(quantity[i], delimiter: ",") : "" %></td>
+    <% end %>
+  </tr>
+  <% end %>
+  <tr><td id="space" colspan="4"></td></tr>
+  <tr>
+    <td class="td-all" id="header" colspan="4">ポカノン設定 ⇒ <%= product.use_pokanon? ? "設定済み" : "設定前"%></td>
+  </tr>
+  <tr>
+    <td class="td-all" id="large" colspan="4"><%= product.use_pokanon? ? "ポカノンを使用してください（段取り/架替）" : "ポカノンのバーコード比較機能を使用してください"%></td>
+  </tr>
+  <tr>
+    <td id="space" colspan="4"></td>
+  </tr>
+  <tr>
+    <td class="td-b-none" id="notes" colspan="4">備考</td>
+  </tr>
+  <tr>
+      <td class="td-t-none" id="order" colspan="4" height="100"><font color="red"><%= simple_format(bikou) %></font></td>
+  </tr>
+  <tr>
+    <td id="large" colspan="4">資材発行 ⇒ ライン投入 ⇒ 生産終了後、回収箱へ返却</td>
+  </tr>
+  <tr><td id="space" colspan="4"></td></tr>
+  <tr>
+    <td colspan="2">※生産終了時、確認印の押印をお願いします</td>
+    <td align="center" width="80" >生産終了</td>
+    <td class="td-all" rowspan="2" width="80" height="60"></td>
+  </tr>
+  <tr>
+    <td colspan="2">※回収箱は「落ち部品回収場所」にあります</td>
+    <td align="center">確認印</td>
+  </tr>
+</table>

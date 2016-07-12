@@ -1,0 +1,91 @@
+<% @title = '生産投入表作成' %>
+<h1>ホーム > <%= @title %></h1>
+
+<% pid = Array.new(2)  %>
+<% order = Array.new(5) %>
+<% quantity = Array.new(5) %>
+<% order2 = Array.new(5) %>
+<% quantity2 = Array.new(5) %>
+
+<h2>生産投入表の作成</h2>
+客先、機種を選択して下さい。オーダー、備考は空欄でも構いません。<br>
+ポカノンの有無、QRコードを変更する場合は
+<%= link_to '機種管理(QRコード登録、オプション設定)', :admin_product_items %>から行ってください。
+<br><br>
+
+<%= form_for @product, url: :admin_confirm do |f| %>
+<table border="1">
+  <tr>
+    <td>左</td>
+    <td>右</td>
+  </tr>
+  <tr>
+    <td>
+      <div class="field" id="select1">
+        <%= f.label :customer, '客先' %><br />
+        <%= f.collection_select :customer, Customer.where(id: ProductItem.all.index_by(&:customer_id).keys), :id, :name %>
+      </div>
+      <div class="field">
+        <%= f.label :name, '機種' %><br />
+        <div class="field" id="target1" >
+        <%= render partial: 'product_select', locals: { product_id: Customer.first.id } %>
+        </div>
+      </div>
+      <div class="field">
+        <table border="0">
+          <tr>
+            <td>オーダー</td>
+            <td>数量</td>
+          </tr>
+          <% 5.times do |i| %>
+          <tr>
+            <td><%= text_field :order, order[i], size: 38 %></td>
+            <td> <%= text_field :quantity, quantity[i], size: 10 %></td>
+          </tr>
+          <% end %>
+        </table>
+      </div>
+      <div class="field">
+        備考<br>
+        <%= text_area :text, @text, cols: 50, rows: 5 %><br />
+      </div>
+    </td>
+    <% ############################################################################## %>
+    <td>
+      <%= fields_for(@product2) do |f2| %>
+      <div class="field" id="select2">
+        <%= f2.label :customer, '客先' %><br />
+        <%= f2.collection_select :customer, Customer.where(id: ProductItem.all.index_by(&:customer_id).keys),  :id, :name %>
+      </div>
+      <div class="field">
+        <%= f2.label :name, '機種' %><br />
+        <div class="field" id="target2">
+        <%= render partial: 'product_select2', locals: { product_id: Customer.first.id } %>
+        </div>
+      </div>
+      <div class="field">
+        <table border="0">
+          <tr>
+            <td>オーダー</td>
+            <td>数量</td>
+          </tr>
+          <% 5.times do |i| %>
+          <tr>
+            <td><%= text_field :order2, order2[i], size: 38 %></td>
+            <td><%= text_field :quantity2, quantity2[i], size: 10 %></td>
+          </tr>
+          <% end %>
+        </table>
+      </div>
+      <div class="field">
+        備考<br>
+        <%= text_area :text, @text, cols: 50, rows: 5 %><br />
+      </div>
+        <% end %>
+    </td>
+  </tr>
+</table>
+<br>
+<%= f.submit '実行' %>
+<%= button_tag "戻る", type: 'button', onclick: "history.back();"%>
+<% end %>

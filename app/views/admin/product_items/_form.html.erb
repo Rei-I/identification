@@ -1,0 +1,23 @@
+<div class="notes">
+  <span class="mark">*</span> 印の付いた項目は入力必須です。
+</div>
+<div>
+  <%= f.label :customer_id, '客先' %>
+  <%= f.collection_select :customer_id, Customer.all, :id, :name %>
+</div>
+<div>
+  <%= f.label :name, '機種名', class: 'required' %>
+  <%= f.text_field :name, required: true %>
+</div>
+<div class="check-boxes">
+  <%= f.check_box :use_pokanon %>
+  <%= f.label :use_pokanon, 'ポカノン使用' %>
+</div>
+<div>
+  <%= f.label :qrcode, 'QRコード' %>
+  <%= f.text_field :qrcode %>
+</div>
+<div class="check-boxes">
+  <%= f.check_box :use_qr %>
+  <%= f.label :use_qr, 'QRコード表示' %>
+</div>

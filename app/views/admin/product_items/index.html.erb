@@ -1,0 +1,50 @@
+<% @title = '機種管理' %>
+<h1>ホーム > <%= @title %></h1>
+
+<div class="table-wrapper">
+  <div class="links"  id="left-box">
+    <%= link_to '戻る', :back %>
+  </div>
+  <div class="links">
+      <%= link_to '新規登録', :new_admin_product_item %>
+  </div>
+  <%= paginate @product_items %>
+  <table class="listing">
+    <tr>
+      <th>客先</th>
+      <th>機種名</th>
+      <th>QRコード</th>
+      <th>QRコード表示フラグ</th>
+      <th>ポカノン使用フラグ</th>
+      <th>登録日時</th>
+      <th>更新日時</th>
+      <th>アクション</th>
+    </tr>
+    <% @product_items.each do |p| %>
+      <tr>
+        <td><%= p.customer.name %></td>
+        <td><%= p.name %></td>
+        <td><%= p.qrcode %></td>
+        <td class="boolean">
+          <%= p.use_qr? ? raw('&#x2611;') : raw('&#x2610')  %></td>
+        <td class="boolean">
+          <%= p.use_pokanon? ? raw('&#x2611;') : raw('&#x2610')  %></td>
+        </td>
+        <td><%= p.created_at.strftime('%Y-%m-%d %H:%M:%S') %></td>
+        <td><%= p.updated_at.strftime('%Y-%m-%d %H:%M:%S')  %></td>
+        <td class="actions">
+          <%= link_to '編集', [ :edit, :admin, p] %> |
+          <%= link_to '削除', [:admin, p], method: :delete, data: {confirm: '本当に削除しますか？'} %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+
+  <%= paginate @product_items %>
+
+  <div class="links">
+    <%= link_to '新規登録', :new_admin_product_item %>
+  </div>
+  <br>
+</div>
+<br>

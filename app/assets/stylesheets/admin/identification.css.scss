@@ -1,0 +1,97 @@
+@import 'colors';
+@import 'dimensions';
+
+$outer_line: 2px;
+
+#large {
+    text-align: center;
+    font-size: 18px;
+}
+
+/* タイトル */
+#title {
+    text-align: center;
+    font-size: 40px;
+    font-weight: bolder;
+}
+
+/* 機種名 */
+#kisyu {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bolder;
+}
+/* オーダー */
+#order {
+    text-align: left;
+    padding: 3px 10px;
+    font-weight: bolder;
+}
+
+/* 数量 */
+#quantity {
+    text-align: right;
+    padding: 3px 40px;
+    font-weight: bolder;
+}
+
+/* ヘッダー */
+#header {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+/* 「機種名,備考」表示 */
+#notes {
+    text-align: left;
+    font-size: 25px;
+    font-weight: bolder;
+    padding: 8px 0px 0px 8px;
+}
+
+/* 空行 */
+#space {
+    height: 10px;
+}
+
+/* 隣接する線を重ねて表示 */
+.table-css { border-collapse: collapse; }
+ 
+/* 上部と左側の線のみ非表示。下部と右側は残っている */
+.td-css11 { 
+ border: 1px solid black; 
+ border-top-style:none; 
+ border-left-style:none; 
+} 
+
+.td-b-none {
+         border: $outer_line solid black; 
+ border-bottom: none;
+}
+
+.td-t-none {
+            border: $outer_line solid black; 
+border-top: none;  
+}
+
+.td-t-dot {
+            border: $outer_line solid black; 
+border-top: none;  
+border-bottom: 1px dotted;
+}
+
+.td-rl {
+     border: $outer_line solid black; 
+border-top: none; 
+ border-bottom: none;
+}
+/* 上下左右すべての線を非表示 */
+.td-none { 
+ border-style:none; 
+} 
+ 
+/* すべての線を表示 */
+.td-all { 
+ border: $outer_line solid black; 
+}

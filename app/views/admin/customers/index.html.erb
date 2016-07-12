@@ -1,0 +1,36 @@
+<% @title = '客先管理' %>
+<h1>ホーム > <%= @title %></h1>
+
+<div class="table-wrapper">
+  <div class="links"  id="left-box">
+    <%= link_to '戻る', :back %>
+  </div>
+  <div class="links">
+    <%= link_to '新規登録', :new_admin_customer %>
+  </div>
+  <table class="listing">
+    <tr>
+      <th>客先ID</th>
+      <th>客先名</th>
+      <th>略称</th>
+      <th>登録日時</th>
+      <th>更新日時</th>
+      <th>アクション</th>
+    </tr>
+    <% @customers.each do |c| %>
+      <tr>
+        <td><%= c.id %> </td>
+        <td><%= c.name %></td>
+        <td><%= c.abbreviation %></td>
+        <td><%= c.created_at.strftime('%Y-%m-%d %H:%M:%S')  %></td>
+        <td><%= c.updated_at.strftime('%Y-%m-%d %H:%M:%S')  %></td>
+        <td class="actions">
+          <%= link_to '編集', [ :edit, :admin, c] %> |
+          <%= link_to '削除', [:admin, c], method: :delete, data: {confirm: '本当に削除しますか？'} %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+  <div class="links">
+  </div>
+</div>
